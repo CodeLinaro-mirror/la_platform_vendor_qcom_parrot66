@@ -1,5 +1,5 @@
 PRODUCT_MAKEFILES := \
-   $(LOCAL_DIR)/parrot.mk
+   $(LOCAL_DIR)/parrot66.mk
 
 COMMON_LUNCH_CHOICES := \
-        parrot-userdebug
+        parrot66-userdebug

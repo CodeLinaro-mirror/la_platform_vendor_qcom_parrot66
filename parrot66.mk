@@ -1,4 +1,5 @@
 TARGET_BOARD_PLATFORM := parrot
+TARGET_BOARD_SUFFIX := 66
 TARGET_BOOTLOADER_BOARD_NAME := parrot
 
 BUILD_BROKEN_DUP_RULES := true
@@ -242,8 +243,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 ###########
 # Target naming
-PRODUCT_NAME := parrot
-PRODUCT_DEVICE := parrot
+PRODUCT_NAME := parrot66
+PRODUCT_DEVICE := parrot66
 PRODUCT_BRAND := qti
 PRODUCT_MODEL := parrot for arm64
 
@@ -379,15 +380,15 @@ PRODUCT_PACKAGES += vendor.qti.camera.provider@2.6-service_64
 # Macro allows Camera module to use new service
 QTI_CAMERA_PROVIDER_SERVICE := 2.7
 
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/parrot/framework_manifest.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/parrot66/framework_manifest.xml
 
 # Enable compilation of image_generation_tool
 TARGET_USES_IMAGE_GEN_TOOL := true
 
 TARGET_USES_QCV := true
 DEVICE_MANIFEST_SKUS := parrot ravelin
-DEVICE_MANIFEST_PARROT_FILES := device/qcom/parrot/manifest_parrot.xml
-DEVICE_MANIFEST_RAVELIN_FILES := device/qcom/parrot/manifest_ravelin.xml
+DEVICE_MANIFEST_PARROT_FILES := device/qcom/parrot66/manifest_parrot.xml
+DEVICE_MANIFEST_RAVELIN_FILES := device/qcom/parrot66/manifest_ravelin.xml
 
 DEVICE_MATRIX_FILE   := device/qcom/common/compatibility_matrix.xml
 
