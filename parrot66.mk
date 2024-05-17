@@ -7,6 +7,9 @@ ALLOW_MISSING_DEPENDENCIES := true
 
 RELAX_USES_LIBRARY_CHECK := true
 
+#Flag to Enable 64 bit only configuration
+TARGET_SUPPORTS_64_BIT_ONLY := true
+
 # Default Android A/B configuration
 ENABLE_AB ?= true
 
@@ -27,8 +30,7 @@ TARGET_CONSOLE_ENABLED ?=
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # Set GRF/Vendor freeze properties
-BOARD_SHIPPING_API_LEVEL := 31
-BOARD_API_LEVEL := 31
+BOARD_SHIPPING_API_LEVEL := 34
 
 # Set SoC manufacturer property
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -80,57 +82,58 @@ SYSTEMEXT_SEPARATE_PARTITION_ENABLE := true
 #true means QMAA is enabled for system
 #false means QMAA is disabled for system
 
-TARGET_USES_QMAA := false
+TARGET_USES_QMAA := true
 
 #QMAA flag which is set to incorporate any generic dependencies
 #required for the boot to UI flow in a QMAA enabled target.
 #Set to false when all target level depenencies are met with
 #actual full blown implementations.
-TARGET_USES_QMAA_RECOMMENDED_BOOT_CONFIG := false
+TARGET_USES_QMAA_RECOMMENDED_BOOT_CONFIG := true
 
 #QMAA tech team flag to override global QMAA per tech team
 #true means overriding global QMAA for this tech area
 #false means using global, no override
-TARGET_USES_QMAA_OVERRIDE_RPMB := true
-TARGET_USES_QMAA_OVERRIDE_DISPLAY := true
-TARGET_USES_QMAA_OVERRIDE_AUDIO   := true
-TARGET_USES_QMAA_OVERRIDE_VIDEO   := true
-TARGET_USES_QMAA_OVERRIDE_CAMERA  := true
-TARGET_USES_QMAA_OVERRIDE_GFX     := true
-TARGET_USES_QMAA_OVERRIDE_WFD     := true
-TARGET_USES_QMAA_OVERRIDE_GPS     := true
+TARGET_USES_QMAA_OVERRIDE_RPMB := false
+TARGET_USES_QMAA_OVERRIDE_DISPLAY := false
+TARGET_USES_QMAA_OVERRIDE_AUDIO   := false
+TARGET_USES_QMAA_OVERRIDE_VIDEO   := false
+TARGET_USES_QMAA_OVERRIDE_CAMERA  := false
+TARGET_USES_QMAA_OVERRIDE_GFX     := false
+TARGET_USES_QMAA_OVERRIDE_WFD     := false
+TARGET_USES_QMAA_OVERRIDE_GPS     := false
 TARGET_USES_QMAA_OVERRIDE_ANDROID_RECOVERY := true
 TARGET_USES_QMAA_OVERRIDE_ANDROID_CORE := true
-TARGET_USES_QMAA_OVERRIDE_WLAN    := true
+TARGET_USES_QMAA_OVERRIDE_WLAN    := false
 TARGET_USES_QMAA_OVERRIDE_DPM  := true
-TARGET_USES_QMAA_OVERRIDE_BLUETOOTH   := true
-TARGET_USES_QMAA_OVERRIDE_FM  := true
-TARGET_USES_QMAA_OVERRIDE_CVP  := true
-TARGET_USES_QMAA_OVERRIDE_FASTCV  := true
-TARGET_USES_QMAA_OVERRIDE_SCVE  := true
-TARGET_USES_QMAA_OVERRIDE_OPENVX  := true
+TARGET_USES_QMAA_OVERRIDE_BLUETOOTH   := false
+TARGET_USES_QMAA_OVERRIDE_FM  := false
+TARGET_USES_QMAA_OVERRIDE_CVP  := false
+TARGET_USES_QMAA_OVERRIDE_FASTCV  := false
+TARGET_USES_QMAA_OVERRIDE_SCVE  := false
+TARGET_USES_QMAA_OVERRIDE_OPENVX  := false
 TARGET_USES_QMAA_OVERRIDE_DIAG := true
-TARGET_USES_QMAA_OVERRIDE_FTM := true
+TARGET_USES_QMAA_OVERRIDE_FTM := false
 TARGET_USES_QMAA_OVERRIDE_DATA := true
 TARGET_USES_QMAA_OVERRIDE_DATA_NET := true
-TARGET_USES_QMAA_OVERRIDE_MSM_BUS_MODULE := true
-TARGET_USES_QMAA_OVERRIDE_KERNEL_TESTS_INTERNAL := true
-TARGET_USES_QMAA_OVERRIDE_MSMIRQBALANCE := true
-TARGET_USES_QMAA_OVERRIDE_VIBRATOR := true
-TARGET_USES_QMAA_OVERRIDE_DRM     := true
-TARGET_USES_QMAA_OVERRIDE_KMGK := true
-TARGET_USES_QMAA_OVERRIDE_VPP := true
-TARGET_USES_QMAA_OVERRIDE_GP := true
-TARGET_USES_QMAA_OVERRIDE_BIOMETRICS := true
-TARGET_USES_QMAA_OVERRIDE_SPCOM_UTEST := true
+TARGET_USES_QMAA_OVERRIDE_MSM_BUS_MODULE := false
+TARGET_USES_QMAA_OVERRIDE_KERNEL_TESTS_INTERNAL := false
+TARGET_USES_QMAA_OVERRIDE_MSMIRQBALANCE := false
+TARGET_USES_QMAA_OVERRIDE_VIBRATOR := false
+TARGET_USES_QMAA_OVERRIDE_DRM     := false
+TARGET_USES_QMAA_OVERRIDE_KMGK := false
+TARGET_USES_QMAA_OVERRIDE_VPP := false
+TARGET_USES_QMAA_OVERRIDE_GP := false
+TARGET_USES_QMAA_OVERRIDE_BIOMETRICS := false
+TARGET_USES_QMAA_OVERRIDE_SPCOM_UTEST := false
 TARGET_USES_QMAA_OVERRIDE_PERF := true
-TARGET_USES_QMAA_OVERRIDE_SENSORS := true
-TARGET_USES_QMAA_OVERRIDE_SYNX := true
-TARGET_USES_QMAA_OVERRIDE_SECUREMSM_TESTS := true
-TARGET_USES_QMAA_OVERRIDE_SOTER := true
-TARGET_USES_QMAA_OVERRIDE_REMOTE_EFS := true
-TARGET_USES_QMAA_OVERRIDE_TFTP := true
+TARGET_USES_QMAA_OVERRIDE_SENSORS := false
+TARGET_USES_QMAA_OVERRIDE_SYNX := false
+TARGET_USES_QMAA_OVERRIDE_SECUREMSM_TESTS := false
+TARGET_USES_QMAA_OVERRIDE_SOTER := false
+TARGET_USES_QMAA_OVERRIDE_REMOTE_EFS := false
+TARGET_USES_QMAA_OVERRIDE_TFTP := false
 TARGET_USES_QMAA_OVERRIDE_EID := false
+TARGET_USES_QMAA_OVERRIDE_USB := true
 
 #Full QMAA HAL List
 QMAA_HAL_LIST := audio video camera display sensors gps
@@ -138,6 +141,10 @@ QMAA_HAL_LIST := audio video camera display sensors gps
 ifeq ($(TARGET_USES_QMAA), true)
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.confqmaa=true
+endif
+
+ifeq ($(TARGET_USES_QMAA_OVERRIDE_USB), true)
+PRODUCT_PROPERTY_OVERRIDES += vendor.usb.use_gadget_hal=0
 endif
 
 ###########
@@ -149,9 +156,11 @@ TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 # Enable USB detection in QMAA mode
 ifeq ($(TARGET_USES_QMAA),true)
 ifeq ($(TARGET_USES_QMAA_RECOMMENDED_BOOT_CONFIG),true)
+ifeq ($(TARGET_USES_QMAA_OVERRIDE_USB), false)
 PRODUCT_PACKAGES += init.qti.usb.qmaa.rc
 # Enable USB in adb-only configuration
 PRODUCT_PROPERTY_OVERRIDES += persist.vendor.usb.config=adb
+endif
 endif
 endif
 
@@ -169,15 +178,19 @@ AEye\
 FDA\
 SnapdragonCamera\
 
-SHIPPING_API_LEVEL := 31
-PRODUCT_SHIPPING_API_LEVEL := 33
+SHIPPING_API_LEVEL := 34
+PRODUCT_SHIPPING_API_LEVEL := 34
 
 # Set kernel version and ion flags
-TARGET_KERNEL_VERSION := 5.10
+TARGET_KERNEL_VERSION := 5.15
 TARGET_USES_NEW_ION := true
 
 # Disable DLKM generation until build support is available
-TARGET_KERNEL_DLKM_DISABLE := false
+TARGET_KERNEL_DLKM_DISABLE := true
+
+TARGET_KERNEL_DLKM_CAMERA_OVERRIDE := false
+TARGET_KERNEL_DLKM_TOUCH_OVERRIDE := false
+TARGET_KERNEL_DLKM_DISPLAY_OVERRIDE := false
 
 #####Dynamic partition Handling
 ###
@@ -209,8 +222,6 @@ BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 
-$(call inherit-product, build/make/target/product/gsi_keys.mk)
-
 BOARD_HAVE_BLUETOOTH := false
 BOARD_HAVE_QCOM_FM := false
 
@@ -218,6 +229,7 @@ BOARD_HAVE_QCOM_FM := false
 PRODUCT_PROPERTY_OVERRIDES += ro.control_privapp_permissions=enforce
 
 TARGET_DEFINES_DALVIK_HEAP := true
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, device/qcom/vendor-common/common64.mk)
 
 #Product property overrides to configure the Dalvik heap
@@ -235,12 +247,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.beluga.c=0x4800 \
     ro.vendor.beluga.s=0x900 \
     ro.vendor.beluga.t=0x240
-
-# Below perf props should be part of vendor/build.prop
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.extension_library=libqti-perfd-client.so \
-    ro.vendor.perf-hal.ver=2.3 \
-    ro.vendor.perf.scroll_opt=1
 
 ###########
 # Target naming
@@ -386,7 +392,14 @@ DEVICE_FRAMEWORK_MANIFEST_FILE := device/qcom/parrot66/framework_manifest.xml
 # Enable compilation of image_generation_tool
 TARGET_USES_IMAGE_GEN_TOOL := true
 
+# QCV allows multiple chipsets to be supported on a single vendor.
+# Add vintf device manifests for chipsets in kalama QCV family below.
+ifeq ($(TARGET_USES_QMAA), true)
+TARGET_USES_QCV := false
+else
 TARGET_USES_QCV := true
+endif
+
 DEVICE_MANIFEST_SKUS := parrot ravelin
 DEVICE_MANIFEST_PARROT_FILES := device/qcom/parrot66/manifest_parrot.xml
 DEVICE_MANIFEST_RAVELIN_FILES := device/qcom/parrot66/manifest_ravelin.xml
@@ -440,7 +453,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 PRODUCT_VENDOR_MOVE_ENABLED := true
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
-BOARD_SYSTEMSDK_VERSIONS := 31
+#BOARD_SYSTEMSDK_VERSIONS := 34
 
 DISABLED_VSDK_SNAPSHOTS_LIST := $(subst $(comma),$(space),$(DISABLED_VSDK_SNAPSHOTS))
 
@@ -489,7 +502,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.qspm.enable=true
 #ANT+ stack
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     libvolumelistener
 
 #FEATURE_OPENGLES_EXTENSION_PACK support string config file
@@ -507,7 +520,7 @@ PRODUCT_BOOT_JARS += tcmiface
 PRODUCT_BOOT_JARS += telephony-ext
 PRODUCT_PACKAGES += telephony-ext
 
-PRODUCT_ENABLE_QESDK := true
+PRODUCT_ENABLE_QESDK := false
 
 # Vendor property to enable advanced network scanning
 PRODUCT_PROPERTY_OVERRIDES += \
