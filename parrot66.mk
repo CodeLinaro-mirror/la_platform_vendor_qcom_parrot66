@@ -192,6 +192,9 @@ TARGET_KERNEL_DLKM_CAMERA_OVERRIDE := false
 TARGET_KERNEL_DLKM_TOUCH_OVERRIDE := true
 TARGET_KERNEL_DLKM_DISPLAY_OVERRIDE := false
 
+# Tech specific flags
+TARGET_KERNEL_DLKM_WLAN_OVERRIDE := true
+
 #####Dynamic partition Handling
 ###
 #### Turning this flag to TRUE will enable dynamic partition/super image creation.
