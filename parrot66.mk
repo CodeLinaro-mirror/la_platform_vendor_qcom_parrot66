@@ -197,6 +197,9 @@ TARGET_KERNEL_DLKM_DATARMNET_OVERRIDE := true
 TARGET_KERNEL_DLKM_DATARMNETEXT_OVERRIDE := true
 TARGET_KERNEL_DLKM_BT_OVERRIDE := true
 
+# Tech specific flags
+TARGET_KERNEL_DLKM_WLAN_OVERRIDE := true
+
 #####Dynamic partition Handling
 ###
 #### Turning this flag to TRUE will enable dynamic partition/super image creation.
