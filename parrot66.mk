@@ -93,7 +93,7 @@ TARGET_USES_QMAA_RECOMMENDED_BOOT_CONFIG := true
 #QMAA tech team flag to override global QMAA per tech team
 #true means overriding global QMAA for this tech area
 #false means using global, no override
-TARGET_USES_QMAA_OVERRIDE_RPMB := false
+TARGET_USES_QMAA_OVERRIDE_RPMB := true
 TARGET_USES_QMAA_OVERRIDE_DISPLAY := true
 TARGET_USES_QMAA_OVERRIDE_AUDIO   := true
 TARGET_USES_QMAA_OVERRIDE_VIDEO   := false
@@ -134,6 +134,7 @@ TARGET_USES_QMAA_OVERRIDE_REMOTE_EFS := false
 TARGET_USES_QMAA_OVERRIDE_TFTP := false
 TARGET_USES_QMAA_OVERRIDE_EID := false
 TARGET_USES_QMAA_OVERRIDE_USB := true
+TARGET_USES_QMAA_OVERRIDE_SMCINVOKE := true
 
 #Full QMAA HAL List
 QMAA_HAL_LIST := audio video camera display sensors gps
