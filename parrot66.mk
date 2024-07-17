@@ -464,24 +464,19 @@ PRODUCT_VENDOR_MOVE_ENABLED := true
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 #BOARD_SYSTEMSDK_VERSIONS := 34
 
-DISABLED_VSDK_SNAPSHOTS_LIST := $(subst $(comma),$(space),$(DISABLED_VSDK_SNAPSHOTS))
+ifneq (,$(wildcard $(QCPATH)/vsdk-tools))
+  PRODUCT_HOST_PACKAGES += \
+     install_vsdk_py2
+  PRODUCT_HOST_PACKAGES += \
+     install_vsdk_py3
+  PRODUCT_HOST_PACKAGES += \
+     vsdk-metadata
+endif
 
 ifeq (true,$(BUILDING_WITH_VSDK))
     ALLOW_MISSING_DEPENDENCIES := true
     TARGET_SKIP_CURRENT_VNDK := true
-    ifneq (,$(filter recovery,$(DISABLED_VSDK_SNAPSHOTS_LIST)))
-        # Recovery snapshot is disabled with VSDK
-        RECOVERY_SNAPSHOT_VERSION := current
-    else
-        RECOVERY_SNAPSHOT_VERSION := 31
-    endif
-
-    ifneq (,$(filter ramdisk,$(DISABLED_VSDK_SNAPSHOTS_LIST)))
-        # Ramdisk snapshot is disabled with VSDK
-        RAMDISK_SNAPSHOT_VERSION := current
-    else
-        RAMDISK_SNAPSHOT_VERSION := 31
-    endif
+    -include vendor/qcom/vsdk_snapshots_config/config.mk
 else
     RECOVERY_SNAPSHOT_VERSION := current
     RAMDISK_SNAPSHOT_VERSION := current
