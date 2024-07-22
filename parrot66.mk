@@ -198,6 +198,7 @@ TARGET_KERNEL_DLKM_DATARMNET_OVERRIDE := true
 TARGET_KERNEL_DLKM_DATARMNETEXT_OVERRIDE := true
 TARGET_KERNEL_DLKM_BT_OVERRIDE := true
 TARGET_KERNEL_DLKM_FASTRPC_OVERRIDE := true
+
 # Tech specific flags
 TARGET_KERNEL_DLKM_WLAN_OVERRIDE := true
 
@@ -207,8 +208,8 @@ TARGET_KERNEL_DLKM_WLAN_OVERRIDE := true
 PRODUCT_BUILD_ODM_IMAGE := true
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_PACKAGES += fastbootd
-# Add default implementation of fastboot HAL.
-PRODUCT_PACKAGES += android.hardware.fastboot@1.1-impl-mock
+# Add default implementation of fastboot AIDL.
+PRODUCT_PACKAGES += android.hardware.fastboot-service.example_recovery
 
 ifeq ($(ENABLE_AB),true)
 ifeq ($(SYSTEMEXT_SEPARATE_PARTITION_ENABLE), true)
@@ -337,9 +338,8 @@ ifeq ($(ENABLE_AB), true)
 PRODUCT_PACKAGES += update_engine \
     update_engine_client \
     update_verifier \
-    android.hardware.boot@1.2-impl-qti \
-    android.hardware.boot@1.2-impl-qti.recovery \
-    android.hardware.boot@1.2-service
+    android.hardware.boot-service.qti \
+    android.hardware.boot-service.qti.recovery
 
 PRODUCT_HOST_PACKAGES += \
     brillo_update_payload
@@ -469,14 +469,6 @@ DISABLED_VSDK_SNAPSHOTS_LIST := $(subst $(comma),$(space),$(DISABLED_VSDK_SNAPSH
 ifeq (true,$(BUILDING_WITH_VSDK))
     ALLOW_MISSING_DEPENDENCIES := true
     TARGET_SKIP_CURRENT_VNDK := true
-
-    ifneq (,$(filter vendor,$(DISABLED_VSDK_SNAPSHOTS_LIST)))
-        # Vendor snapshot is disabled with VSDK
-        BOARD_VNDK_VERSION := current
-    else
-        BOARD_VNDK_VERSION := 31
-    endif
-
     ifneq (,$(filter recovery,$(DISABLED_VSDK_SNAPSHOTS_LIST)))
         # Recovery snapshot is disabled with VSDK
         RECOVERY_SNAPSHOT_VERSION := current
@@ -491,7 +483,6 @@ ifeq (true,$(BUILDING_WITH_VSDK))
         RAMDISK_SNAPSHOT_VERSION := 31
     endif
 else
-    BOARD_VNDK_VERSION := current
     RECOVERY_SNAPSHOT_VERSION := current
     RAMDISK_SNAPSHOT_VERSION := current
 endif
