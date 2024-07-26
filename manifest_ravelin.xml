@@ -125,15 +125,12 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
         <fqname>INxpNfc/default</fqname>
     </hal>
     <!-- secure element -->
-    <hal format="hidl">
+    <hal format="aidl">
        <name>android.hardware.secure_element</name>
-       <transport>hwbinder</transport>
-       <version>1.2</version>
+       <version>1</version>
        <interface>
            <name>ISecureElement</name>
            <instance>eSE1</instance>
-           <instance>SIM1</instance>
-           <instance>SIM2</instance>
        </interface>
     </hal>
     <!-- eSEPowerManager -->
