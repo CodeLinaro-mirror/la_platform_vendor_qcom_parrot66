@@ -162,36 +162,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
         <version>1</version>
         <fqname>IDrmFactory/wfdhdcp</fqname>
     </hal>
-   <!-- IMS RTP Service -->
-    <hal format="hidl">
-        <name>vendor.qti.imsrtpservice</name>
-        <transport>hwbinder</transport>
-        <version>3.0</version>
-        <interface>
-            <name>IRTPService</name>
-            <instance>imsrtpservice</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.qti.hardware.data.iwlan</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>IIWlan</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.qti.hardware.data.connection</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>IDataConnection</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-        </interface>
-    </hal>
     <!-- Factory HAL service -->
     <hal format="hidl">
         <name>vendor.qti.hardware.factory</name>
@@ -331,16 +301,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
         <interface>
             <name>IEmbms</name>
             <instance>embmsslServer0</instance>
-        </interface>
-    </hal>
-     <!-- DpmService HAL service -->
-    <hal format="hidl">
-        <name>vendor.qti.hardware.dpmservice</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>IDpmService</name>
-            <instance>DpmService</instance>
         </interface>
     </hal>
 </manifest>
