@@ -14,7 +14,11 @@ TARGET_SUPPORTS_64_BIT_ONLY := true
 ENABLE_AB ?= true
 
 ENABLE_VIRTUAL_AB := true
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+# Enable virtual A/B compression
+$(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/vabc_features.mk)
+PRODUCT_VIRTUAL_AB_COMPRESSION_METHOD := lz4
+PRODUCT_VENDOR_PROPERTIES += ro.virtual_ab.compression.threads=true
 
 # Enable debugfs restrictions
 PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
@@ -117,8 +121,8 @@ TARGET_USES_QMAA_OVERRIDE_DATA := true
 TARGET_USES_QMAA_OVERRIDE_DATA_NET := true
 TARGET_USES_QMAA_OVERRIDE_RIL_DATA := true
 TARGET_USES_QMAA_OVERRIDE_DATA_CONNECTIVITY := true
-TARGET_USES_QMAA_OVERRIDE_MSM_BUS_MODULE := false
-TARGET_USES_QMAA_OVERRIDE_KERNEL_TESTS_INTERNAL := false
+TARGET_USES_QMAA_OVERRIDE_MSM_BUS_MODULE := true
+TARGET_USES_QMAA_OVERRIDE_KERNEL_TESTS_INTERNAL := true
 TARGET_USES_QMAA_OVERRIDE_MSMIRQBALANCE := false
 TARGET_USES_QMAA_OVERRIDE_VIBRATOR := false
 TARGET_USES_QMAA_OVERRIDE_DRM     := true
@@ -191,6 +195,7 @@ TARGET_KERNEL_DLKM_DISABLE := true
 TARGET_KERNEL_DLKM_CAMERA_OVERRIDE := true
 TARGET_KERNEL_DLKM_TOUCH_OVERRIDE := true
 TARGET_KERNEL_DLKM_DISPLAY_OVERRIDE := true
+TARGET_KERNEL_DLKM_MM_DRV_OVERRIDE := true
 TARGET_KERNEL_DLKM_NFC_OVERRIDE := true
 TARGET_KERNEL_DLKM_VIDEO_OVERRIDE := true
 TARGET_KERNEL_DLKM_DATAIPA_OVERRIDE := true
@@ -464,24 +469,19 @@ PRODUCT_VENDOR_MOVE_ENABLED := true
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 #BOARD_SYSTEMSDK_VERSIONS := 34
 
-DISABLED_VSDK_SNAPSHOTS_LIST := $(subst $(comma),$(space),$(DISABLED_VSDK_SNAPSHOTS))
+ifneq (,$(wildcard $(QCPATH)/vsdk-tools))
+  PRODUCT_HOST_PACKAGES += \
+     install_vsdk_py2
+  PRODUCT_HOST_PACKAGES += \
+     install_vsdk_py3
+  PRODUCT_HOST_PACKAGES += \
+     vsdk-metadata
+endif
 
 ifeq (true,$(BUILDING_WITH_VSDK))
     ALLOW_MISSING_DEPENDENCIES := true
     TARGET_SKIP_CURRENT_VNDK := true
-    ifneq (,$(filter recovery,$(DISABLED_VSDK_SNAPSHOTS_LIST)))
-        # Recovery snapshot is disabled with VSDK
-        RECOVERY_SNAPSHOT_VERSION := current
-    else
-        RECOVERY_SNAPSHOT_VERSION := 31
-    endif
-
-    ifneq (,$(filter ramdisk,$(DISABLED_VSDK_SNAPSHOTS_LIST)))
-        # Ramdisk snapshot is disabled with VSDK
-        RAMDISK_SNAPSHOT_VERSION := current
-    else
-        RAMDISK_SNAPSHOT_VERSION := 31
-    endif
+    -include vendor/qcom/vsdk_snapshots_config/config.mk
 else
     RECOVERY_SNAPSHOT_VERSION := current
     RAMDISK_SNAPSHOT_VERSION := current
@@ -520,7 +520,7 @@ PRODUCT_BOOT_JARS += tcmiface
 PRODUCT_BOOT_JARS += telephony-ext
 PRODUCT_PACKAGES += telephony-ext
 
-PRODUCT_ENABLE_QESDK := false
+PRODUCT_ENABLE_QESDK := true
 
 # Vendor property to enable advanced network scanning
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -555,9 +555,6 @@ PRODUCT_VENDOR_PROPERTIES += graphics.gpu.profiler.support=true
 # This is the End of target.mk file.
 # Now, Pickup other split product.mk files:
 ###################################################################################
-# TODO: Relocate the system product.mk files pickup into qssi lunch, once it is up.
-$(foreach sdefs, $(sort $(wildcard vendor/qcom/defs/product-defs/system/*.mk)), \
-    $(call inherit-product, $(sdefs)))
 $(foreach vdefs, $(sort $(wildcard vendor/qcom/defs/product-defs/vendor/*.mk)), \
     $(call inherit-product, $(vdefs)))
 ###################################################################################
