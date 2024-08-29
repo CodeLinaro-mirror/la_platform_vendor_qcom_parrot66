@@ -192,6 +192,9 @@ BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 #Enable PD locater/notifier
 TARGET_PD_SERVICE_ENABLED := true
 
+#Enabe QSPA
+BOARD_BOOTCONFIG += androidboot.vendor.qspa=true
+
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
