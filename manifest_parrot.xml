@@ -159,15 +159,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
             <instance>qti-tee</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-        <name>vendor.qti.hardware.fm</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IFmHci</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
     <!--ANT-->
     <hal format="hidl">
         <name>com.dsi.ant</name>
