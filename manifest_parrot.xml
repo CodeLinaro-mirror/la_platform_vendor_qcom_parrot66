@@ -175,14 +175,4 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
         <fqname>@1.1::ITrustedInput/default</fqname>
         <fqname>@1.1::ITrustedInput/qtee-vm</fqname>
     </hal>
-    <!-- QCC HAL Service -->
-    <hal format="hidl">
-        <name>vendor.qti.hardware.qccvndhal</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IQccvndhal</name>
-            <instance>qccvndhal</instance>
-        </interface>
-    </hal>
 </manifest>
