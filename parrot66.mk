@@ -551,6 +551,11 @@ PRODUCT_VENDOR_PROPERTIES+= \
 # GPU Profiler support
 PRODUCT_VENDOR_PROPERTIES += graphics.gpu.profiler.support=true
 
+# Enable QSPA hal and framework
+PRODUCT_PACKAGES += vendor.qti.qspa-service \
+                    qspa-testclient \
+                    qspa_vendor.rc
+
 ###################################################################################
 # This is the End of target.mk file.
 # Now, Pickup other split product.mk files:
