@@ -71,16 +71,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
         <fqname>IWifiDisplaySessionAudioTrack/default</fqname>
         <fqname>IWifiDisplaySessionImageTrack/default</fqname>
     </hal>
-    <!-- fingerprint hal: using remote service instead of Google's default service-->
-    <hal format="hidl">
-        <name>vendor.qti.hardware.fingerprint</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IQtiExtendedFingerprint</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
     <hal format="aidl">
        <name>android.hardware.gatekeeper</name>
        <version>1</version>
