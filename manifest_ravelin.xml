@@ -104,17 +104,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
         <version>1</version>
         <fqname>IDrmFactory/wfdhdcp</fqname>
     </hal>
-    <!--ANT-->
-    <hal format="hidl">
-        <name>com.dsi.ant</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IAnt</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <!--ANT-->
     <!-- WifiStats HAL service -->
     <hal format="hidl">
         <name>vendor.qti.hardware.wifi.wifilearner</name>
