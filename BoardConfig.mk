@@ -127,6 +127,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 # Use sha256 for dm-verity partitions
 BOARD_AVB_VENDOR_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_VENDOR_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
+BOARD_AVB_SYSTEM_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_ODM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
 TARGET_USES_ION := true
@@ -191,6 +192,9 @@ BOARD_MOVE_GSI_AVB_KEYS_TO_VENDOR_BOOT := true
 
 #Enable PD locater/notifier
 TARGET_PD_SERVICE_ENABLED := true
+
+#Enabe QSPA
+BOARD_BOOTCONFIG += androidboot.vendor.qspa=true
 
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
