@@ -104,17 +104,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
         <version>1</version>
         <fqname>IDrmFactory/wfdhdcp</fqname>
     </hal>
-    <!--ANT-->
-    <hal format="hidl">
-        <name>com.dsi.ant</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IAnt</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <!--ANT-->
     <!-- WifiStats HAL service -->
     <hal format="hidl">
         <name>vendor.qti.hardware.wifi.wifilearner</name>
@@ -124,14 +113,5 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
             <name>IWifiStats</name>
             <instance>wifiStats</instance>
         </interface>
-    </hal>
-    <!-- Trusted UI HAL Service -->
-    <hal format="hidl">
-        <name>vendor.qti.hardware.trustedui</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.2::ITrustedUI/default</fqname>
-        <fqname>@1.2::ITrustedUI/qtee-vm</fqname>
-        <fqname>@1.1::ITrustedInput/default</fqname>
-        <fqname>@1.1::ITrustedInput/qtee-vm</fqname>
     </hal>
 </manifest>
