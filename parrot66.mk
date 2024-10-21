@@ -549,6 +549,10 @@ PRODUCT_PACKAGES_DEBUG += bti_test_prebuilt \
 PRODUCT_VENDOR_PROPERTIES+= \
      ro.mediaserver.64b.enable=true
 
+# VM shutdown feature enablement
+PRODUCT_VENDOR_PROPERTIES += \
+     ro.vendor.vm.ssr.enable=false
+
 # GPU Profiler support
 PRODUCT_VENDOR_PROPERTIES += graphics.gpu.profiler.support=true
 
