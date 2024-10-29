@@ -40,6 +40,9 @@ BOARD_SHIPPING_API_LEVEL := 202404
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.soc.manufacturer=QTI
 
+#Enable AOSP to be page size agnostic
+PRODUCT_NO_BIONIC_PAGE_SIZE_MACRO := true
+
 # For QSSI builds, we should skip building the system image. Instead we build the
 # "non-system" images (that we support).
 
