@@ -36,6 +36,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Set GRF/Vendor freeze properties
 BOARD_SHIPPING_API_LEVEL := 202404
 
+#Align all 64-bit userspace ELF binaries to 16 KB
+PRODUCT_MAX_PAGE_SIZE_SUPPORTED := 16384
+
 # Set SoC manufacturer property
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.soc.manufacturer=QTI
