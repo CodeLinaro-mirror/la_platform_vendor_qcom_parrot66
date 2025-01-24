@@ -200,6 +200,9 @@ TARGET_PD_SERVICE_ENABLED := true
 #Enabe QSPA
 BOARD_BOOTCONFIG += androidboot.vendor.qspa=true
 
+#Enabling Protected VM for AVF
+BOARD_BOOTCONFIG += androidboot.hypervisor.protected_vm.supported=true
+
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
