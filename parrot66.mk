@@ -571,6 +571,13 @@ PRODUCT_PACKAGES += vendor.qti.qspa-service \
                     qspa-testclient \
                     qspa_vendor.rc
 
+ifneq ($(TARGET_USES_QMAA), true)
+ifeq ($(TARGET_USES_QMAA_OVERRIDE_ANDROID_CORE),true)
+#enable virtualization service
+$(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk)
+endif
+endif
+
 ###################################################################################
 # This is the End of target.mk file.
 # Now, Pickup other split product.mk files:
