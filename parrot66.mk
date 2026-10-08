@@ -180,6 +180,7 @@ endif
 CLEAN_UP_JAVA_IN_VENDOR ?= enforcing
 
 JAVA_IN_VENDOR_SOONG_WHITE_LIST :=\
+AEye\
 CuttlefishService\
 pasrservice\
 QFingerprintService\
